@@ -19,11 +19,12 @@ public class MainActivity extends AppCompatActivity {
         EditText uid=(EditText) findViewById(R.id.uid);
         String num=uid.getText().toString();
         if(num.length() !=12){
-            Toast.makeText(getApplicationContext(),"Enter a correct Uid", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Enter correct Uid", Toast.LENGTH_SHORT).show();
         }
         else{
             Intent getres = new Intent();
             getres.setClass(this,ResultScreen.class);
+            getres.putExtra("uid",num);
             startActivity(getres);
         }
 

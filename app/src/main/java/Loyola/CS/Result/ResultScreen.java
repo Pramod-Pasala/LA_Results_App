@@ -2,6 +2,7 @@ package Loyola.CS.Result;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.chaquo.python.PyObject;
@@ -14,13 +15,15 @@ public class ResultScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_screen);
+        Intent caller=getIntent();
+        String uid=caller.getStringExtra("uid");
 
         if (! Python.isStarted()) {
             Python.start(new AndroidPlatform(this));
         }
         Python py=Python.getInstance();
         PyObject pyobj =py.getModule("result");
-        PyObject obj =pyobj.callAttr("");
+        PyObject obj =pyobj.callAttr("main",uid);
 
     }
 }
